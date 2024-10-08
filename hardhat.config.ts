@@ -78,11 +78,26 @@ export default {
     optimism: {
       url: `https://optimism-mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
     },
+    rollup: {
+      url: process.env.REACT_APP_RPC_URL
+    }
   },
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
-    apiKey: process.env.ETHERSCAN_API_KEY,
+    apiKey: {
+      rollup: "57246839-f3fb-4d62-ae57-4214b12a697e",
+    },
+    customChains: [
+      {
+        network: "rollup",
+        chainId: Number(process.env.REACT_APP_CHAIN_ID),
+        urls: {
+          apiURL: process.env.REACT_APP_EXPLORER_URL + '/api',
+          browserURL: process.env.REACT_APP_EXPLORER_URL,
+        },
+      }
+    ]
   },
   solidity: {
     compilers: [DEFAULT_COMPILER_SETTINGS],
